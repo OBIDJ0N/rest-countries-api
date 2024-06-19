@@ -11,15 +11,17 @@ const Navbar = () => {
     }
 
     return (
-        <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} py={'20px'} className='bg-white dark:bg-dark-dark-blue shadow-shadow container'>
-            <Link to={'/'}>
-                <Typography variant='h5' fontWeight={'bold'} className='dark:text-white max-phone:text-[1.1rem]' >
-                    Where in the world?
-                </Typography>
-            </Link>
-            <Button onClick={themeHandler} startIcon={<NightlightRound className='-rotate-[40deg]' />} className='text-light-very-dark-blue dark:text-white normal-case font-bold bg-transparent'>
-                {mode ? 'Light Mode' : 'Dark Mode'}
-            </Button>
+        <Stack className='bg-white dark:bg-dark-dark-blue shadow-shadow w-full'>
+            <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} py={'20px'} className='container'>
+                <Link to={'/'}>
+                    <Typography variant='h5' fontWeight={'bold'} className='dark:text-white max-phone:text-[1.1rem]' >
+                        Where in the world?
+                    </Typography>
+                </Link>
+                <Button onClick={themeHandler} startIcon={<NightlightRound className='-rotate-[40deg]' />} className='text-light-very-dark-blue dark:text-white normal-case font-bold bg-transparent'>
+                    {mode ? 'Light Mode' : 'Dark Mode'}
+                </Button>
+            </Stack>
         </Stack>
     )
 }

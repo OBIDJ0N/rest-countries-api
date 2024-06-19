@@ -1,20 +1,28 @@
-import { NightlightRound } from '@mui/icons-material'
-import { Button, Stack, Typography } from '@mui/material'
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { NightlightRound } from '@mui/icons-material';
+import { Button, Stack, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-    const [mode, setMode] = useState(false)
+    const [mode, setMode] = useState(localStorage.theme === 'dark');
+
     const themeHandler = () => {
-        setMode(prev => !prev)
-        document.documentElement.classList.toggle('dark')
-    }
+        const newMode = !mode;
+        setMode(newMode);
+        if (newMode) {
+            document.documentElement.classList.add('dark');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.setItem('theme', 'light');
+        }
+    };
 
     return (
         <Stack className='bg-white dark:bg-dark-dark-blue shadow-shadow w-full'>
             <Stack direction={'row'} justifyContent={'space-between'} alignItems={'center'} py={'20px'} className='container'>
                 <Link to={'/'}>
-                    <Typography variant='h5' fontWeight={'bold'} className='dark:text-white max-phone:text-[1.1rem]' >
+                    <Typography variant='h5' fontWeight={'bold'} className='dark:text-white max-phone:text-[1.1rem]'>
                         Where in the world?
                     </Typography>
                 </Link>
@@ -23,7 +31,7 @@ const Navbar = () => {
                 </Button>
             </Stack>
         </Stack>
-    )
-}
+    );
+};
 
-export default Navbar
+export default Navbar;

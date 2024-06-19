@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Routes, Route, useMatch } from 'react-router-dom';
 import { Box, Stack, ThemeProvider } from '@mui/material';
 import Navbar from '../navbar/Navbar';
@@ -10,7 +10,6 @@ if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.match
 } else {
     document.documentElement.classList.remove('dark');
 }
-
 
 const App = () => {
     const isCountryDetailPage = useMatch('/details/:cca3');
@@ -36,4 +35,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default App

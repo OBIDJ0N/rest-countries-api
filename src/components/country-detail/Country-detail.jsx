@@ -5,12 +5,12 @@ import CountryDetailCard from '../country-detail-card/Country-detail-card';
 
 const CountryDetail = () => {
   const [country, setCountry] = useState(null); 
-  const { fifa } = useParams();
+  const { cca3 } = useParams();
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const data = await ApiService.fetching(`alpha/${fifa}`);
+        const data = await ApiService.fetching(`alpha/${cca3}`);
         if (data) {
           setCountry(data); 
         }
@@ -20,7 +20,7 @@ const CountryDetail = () => {
       }
     };
     getData();
-  }, [fifa]);
+  }, [cca3]);
 
   return (
     country && <CountryDetailCard country={country} />

@@ -1,9 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Cards } from '../';
-import { Box, Stack } from '@mui/material';
+import { Cards, Loader } from '../';
+import { Stack } from '@mui/material';
 import { ApiService } from '../../service/api.service';
 import { useParams } from 'react-router-dom';
-import CircularProgress from '@mui/material/CircularProgress';
 
 const Main = () => {
   const [country, setCountry] = useState([]);
@@ -34,9 +33,7 @@ const Main = () => {
   return (
     <Stack>
       {loading ? (
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh' }}>
-          <CircularProgress disableShrink />
-        </Box>
+        <Loader />
       ) : (<Cards country={memoizedCountry} />)}
     </Stack>
   );

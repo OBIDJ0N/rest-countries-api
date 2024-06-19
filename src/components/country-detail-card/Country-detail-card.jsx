@@ -1,7 +1,7 @@
-import { Box, Button, Stack, Typography, List, ListItem, ListItemText } from '@mui/material';
+import { Box, Button, Stack, Typography, List, ListItem } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ApiService } from '../../service/api.service';
 
 const CountryDetailCard = ({ country }) => {
@@ -40,64 +40,69 @@ const CountryDetailCard = ({ country }) => {
     <Box>
       <Button
         startIcon={<KeyboardBackspaceIcon className='w-[25px] h-[25px]' />}
-        className='my-[4.75rem] bg-white dark:bg-dark-dark-blue dark:text-white shadow-shadow py-2 px-9 text-light-very-dark-blue normal-case text-base'
+        className='my-[4.75rem] max-phone:mt-[3.75rem] bg-white dark:bg-dark-dark-blue dark:text-white shadow-shadow py-2 px-9 text-light-very-dark-blue normal-case text-base'
         onClick={handleBackClick}
       >
         Back
       </Button>
       {country.map((item, idx) => (
-        <Stack key={idx} direction={'row'} alignItems={'center'} justifyContent={'flex-start'} className='gap-[7.5rem] max-laptop:gap-12 max-tablet:flex-col'>
+        <Stack key={idx} direction={'row'} alignItems={'center'} justifyContent={'flex-start'} className='gap-[7.5rem] max-laptop:gap-12 max-tablet:flex-col mb-16'>
           <Stack width={'50%'} className='max-tablet:w-full shadow-shadow max-laptop:h-[22rem] max-phone:h-auto'>
-            <img src={item.flags.png} alt="flag" className='h-[400px] max-laptop:h-[22rem] max-tablet:h-full' />
+            <img src={item?.flags?.svg} alt="flag" className='w-full h-full max-laptop:h-[22rem] max-tablet:h-full' />
           </Stack>
+
           <Stack width={'50%'} className='max-tablet:w-full'>
             <Typography variant='h4' fontWeight={'bold'}>
-              {item.name.common}
+              {item?.name?.common}
             </Typography>
             <Stack direction={'row'} justifyContent={'space-between'} gap={'10px'} className='max-phone:flex-col'>
               <List className='mt-4'>
                 <ListItem className='p-0'>
-                  <Typography className='text-base font-bold'>Native name: <span className='font-normal opacity-85'>{`${Object.values(item.name.nativeName)[0].common}`}</span></Typography>
+                  <Typography className='text-base font-bold'>Native name: <span className='font-normal opacity-85'>{Object.values(item?.name?.nativeName)[0]?.common ? Object.values(item?.name?.nativeName)[0]?.common : 'No'}</span></Typography>
                 </ListItem>
                 <ListItem className='p-0 py-2'>
-                  <Typography className='text-base font-bold'>Population: <span className='font-normal opacity-85'>{item.population}</span></Typography>
+                  <Typography className='text-base font-bold'>Population: <span className='font-normal opacity-85'>{item?.population ? item?.population : 'No'}</span></Typography>
                 </ListItem>
                 <ListItem className='p-0'>
-                  <Typography className='text-base font-bold'>Region: <span className='font-normal opacity-85'>{item.region}</span></Typography>
+                  <Typography className='text-base font-bold'>Region: <span className='font-normal opacity-85'>{item?.region ? item?.region : 'No'}</span></Typography>
                 </ListItem>
                 <ListItem className='p-0 py-2'>
-                  <Typography className='text-base font-bold'>Sub Region: <span className='font-normal opacity-85'>{item.subregion}</span></Typography>
+                  <Typography className='text-base font-bold'>Sub Region: <span className='font-normal opacity-85'>{item?.subregion ? item?.subregion : 'No'}</span></Typography>
                 </ListItem>
                 <ListItem className='p-0'>
-                  <Typography className='text-base font-bold'>Capital: <span className='font-normal opacity-85'>{item.capital}</span></Typography>
+                  <Typography className='text-base font-bold'>Capital: <span className='font-normal opacity-85'>{item?.capital ? item?.capital : 'No'}</span></Typography>
                 </ListItem>
               </List>
               <List className='mt-4'>
                 <ListItem className='p-0'>
-                  <Typography className='text-base font-bold'>Top Level Domain: <span className='font-normal opacity-85'>{item.tld[0]}</span></Typography>
+                  <Typography className='text-base font-bold'>Top Level Domain: <span className='font-normal opacity-85'>{item?.tld[0] ? item?.tld[0] : 'No'}</span></Typography>
                 </ListItem>
                 <ListItem className='p-0 py-2'>
-                  <Typography className='text-base font-bold'>Currencies: <span className='font-normal opacity-85'>{Object.values(item.currencies)[0].name}</span></Typography>
+                  <Typography className='text-base font-bold'>Currencies: <span className='font-normal opacity-85'>{Object.values(item?.currencies)[0]?.name ? Object.values(item?.currencies)[0]?.name : 'No'}</span></Typography>
                 </ListItem>
                 <ListItem className='p-0'>
-                  <Typography className='text-base font-bold'>Languages: <span className='font-normal opacity-85'>{Object.values(item.languages).join(', ')}</span></Typography>
+                  <Typography className='text-base font-bold'>Languages: <span className='font-normal opacity-85'>{Object.values(item?.languages) ? Object.values(item?.languages).join(', ') : 'No'}</span></Typography>
                 </ListItem>
               </List>
             </Stack>
             <Stack direction={'row'} className='mt-[4.75rem] max-phone:flex-col max-phone:gap-4'>
               <Typography className='mr-4 text-base font-bold mt-[6px]'>Border countries:</Typography>
               <Stack direction={'row'} flexWrap={'wrap'} gap={1}>
-                {borderData.map(item => (
-                  item.map((border, idx) => (
-                    <Button
-                      key={idx}
-                      className='px-5 border-none text-light-very-dark-blue dark:text-white bg-white shadow-shadow dark:bg-dark-dark-blue opacity-85 normal-case'
-                      onClick={() => handleBorderClick(border)}
-                    >
-                      {border?.name?.common}
-                    </Button>
+                {borderData && borderData.length > 0 ? (
+                  borderData.map(item => (
+                    item.map((border, idx) => (
+                      <Button
+                        key={idx}
+                        className='px-5 border-none text-light-very-dark-blue dark:text-white bg-white shadow-shadow dark:bg-dark-dark-blue opacity-85 normal-case'
+                        onClick={() => handleBorderClick(border)}
+                      >
+                        {border?.name?.common}
+                      </Button>
+                    ))
                   ))
-                ))}
+                ) : (
+                  <p className='mt-[6px]'>No borders</p>
+                )}
               </Stack>
             </Stack>
           </Stack>

@@ -13,7 +13,7 @@ if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.match
 
 
 const App = () => {
-    const isCountryDetailPage = useMatch('/details/:fifa');
+    const isCountryDetailPage = useMatch('/details/:cca3');
 
     return (
         <ThemeProvider theme={theme}>
@@ -28,7 +28,7 @@ const App = () => {
                 <Routes>
                     <Route path='/region/:name' element={<Main />} />
                     <Route path='/search/:name' element={<Search />} />
-                    <Route path='/details/:fifa' element={<CountryDetail />} />
+                    <Route path='/details/:cca3' element={<CountryDetail />} />
                     <Route path='/' element={<Main />} />
                 </Routes>
             </Box>

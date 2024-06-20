@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Routes, Route, useMatch } from 'react-router-dom';
 import { Box, Stack, ThemeProvider } from '@mui/material';
 import Navbar from '../navbar/Navbar';

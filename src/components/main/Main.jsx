@@ -23,7 +23,7 @@ const Main = () => {
       } catch (error) {
         console.log(error);
       } finally {
-        setLoading(false)
+        setTimeout(() => setLoading(false), 300);
       }
     };
     getData();

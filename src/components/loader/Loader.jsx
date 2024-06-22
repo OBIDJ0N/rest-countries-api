@@ -4,7 +4,7 @@ import React from 'react'
 const Loader = () => {
     return (
         <Box className='max-tablet:h-[40dvh]' sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '60dvh' }}>
-            <CircularProgress disableShrink />
+            <CircularProgress />
         </Box>
     )
 }

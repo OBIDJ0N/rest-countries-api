@@ -16,11 +16,10 @@ const CountryDetail = () => {
         if (data) {
           setCountry(data);
         }
-        // console.log(data);
       } catch (error) {
         console.log(error);
       } finally {
-        setLoading(false)
+        setTimeout(() => setLoading(false), 300);
       }
     };
     getData();
